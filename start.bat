@@ -1,3 +1,3 @@
 docker compose up -d
-timeout /t 10
+timeout /t 5
 

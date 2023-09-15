@@ -1,2 +1,2 @@
 docker compose down
-timeout /t 10
+timeout /t 5
