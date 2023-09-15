@@ -1,0 +1,36 @@
+version: '3.8'
+# ---------------------------------- 
+# Создать своего пользователя (после запуска контейнера):
+# docker exec -it superset superset fab create-admin --username super --firstname Super --lastname Super --email super@v.com
+#
+# Интерфейс доступа: http://127.0.0.1:8088
+#   Login: super Password: super (после отработки вышеописанной команды)
+#
+# Создание connections для баз:
+#   Greenplum (имя базы - az): 
+#      postgresql://gpadmin:gpadmin@host.docker.internal:2222/az
+#   ClickHouse:
+#      clickhousedb://clickhouse/default
+#   Postgres: как обычно, через host.docker.internal и порт: 1111
+# ----------------------------------
+
+services:
+  # ========================
+  # Основной сервис SUPERSET
+  # ========================
+  superset:
+    image: alexsuf/superset
+    container_name: superset
+    restart: always
+    environment:
+      SUPERSET_SECRET_KEY: Zadonsky
+      TZ: Europe/Moscow
+    ports:
+      - 8088:8088
+    volumes:
+      - superset_db:/app/superset_home
+      - ./FILES:/mnt/files 
+
+volumes:
+  superset_db:
+    external: true
