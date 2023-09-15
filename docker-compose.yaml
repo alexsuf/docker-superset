@@ -1,5 +1,6 @@
 version: '3.8'
-# ---------------------------------- 
+
+# ---------------------------------------------
 # Создать своего пользователя (после запуска контейнера):
 # docker exec -it superset superset fab create-admin --username super --firstname Super --lastname Super --email super@v.com
 #
@@ -12,7 +13,7 @@ version: '3.8'
 #   ClickHouse:
 #      clickhousedb://clickhouse/default
 #   Postgres: как обычно, через host.docker.internal и порт: 1111
-# ----------------------------------
+# ----------------------------------------------
 
 services:
   # ========================
@@ -29,7 +30,7 @@ services:
       - 8088:8088
     volumes:
       - superset_db:/app/superset_home
-      - ./FILES:/mnt/files 
+      - ./files:/mnt/files 
 
 volumes:
   superset_db:
